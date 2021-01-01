@@ -18,7 +18,7 @@ jobs:
     - name: configure
       run: |
         sudo apt-get install libvulkan-dev
-        cmake vulkan-kompute/ -Bvulkan-kompute/build/ \
+        cmake vulkan-kompute/ -Bbuild/ \
                   -DKOMPUTE_OPT_BUILD_TESTS=1                \
                   -DKOMPUTE_OPT_INSTALL=1                    \
                   -DKOMPUTE_OPT_ENABLE_SPDLOG=1              \
@@ -29,8 +29,8 @@ jobs:
 #        cmake -DCMAKE_CXX_FLAGS="-Werror" ..
     - name: build
       run: | 
-        make -C vulkan-kompute/build/ -j
-        make -C vulkan-kompute/build/ install
+        make -C build/ -j
+        make -C build/ install
 #        cmake --build build
     #- name: test
     #  run: cd build && ctest
