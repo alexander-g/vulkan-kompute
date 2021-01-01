@@ -15,9 +15,12 @@ jobs:
     - uses: actions/checkout@v2
       with:
         submodules: recursive
+    - name: install vulkan
+      run: sudo apt-get install libvulkan-dev
+    - name: tmate session
+      uses: mxschmitt/action-tmate@v3.1
     - name: configure
       run: |
-        sudo apt-get install libvulkan-dev
         cmake vulkan-kompute/ -Bbuild/ \
                   -DKOMPUTE_OPT_BUILD_TESTS=1                \
                   -DKOMPUTE_OPT_INSTALL=1                    \
