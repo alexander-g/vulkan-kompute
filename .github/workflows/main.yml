@@ -17,11 +17,11 @@ jobs:
         submodules: recursive
     - name: install vulkan
       run: sudo apt-get install libvulkan-dev
-    - name: tmate session
-      uses: mxschmitt/action-tmate@v3.1
+    #- name: tmate session
+    #  uses: mxschmitt/action-tmate@v3.1
     - name: configure
       run: |
-        cmake vulkan-kompute/ -Bbuild/ \
+        cmake . -Bbuild/ \
                   -DKOMPUTE_OPT_BUILD_TESTS=1                \
                   -DKOMPUTE_OPT_INSTALL=1                    \
                   -DKOMPUTE_OPT_ENABLE_SPDLOG=1              \
@@ -33,9 +33,9 @@ jobs:
     - name: build
       run: | 
         make -C build/ -j
-        make -C build/ install
+        sudo make -C build/ install
 #        cmake --build build
-    #- name: test
+    #- name: test  #NOTE: need to setup GTest
     #  run: cd build && ctest
 
 #  build-windows:
